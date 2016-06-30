@@ -50,18 +50,19 @@ class Engine
 		if (count($this->players) < 2 || count($this->players) >= 4) {
 			throw new Exception("Players should atleast 2 players and minimum of 4 players");
 		}
-		
-		echo "<pre>";
 
 		foreach($this->players as $player) {
-			$randomCard1 = array_pop($this->organizedCards);
+			$randomCard1 = explode('-', array_pop($this->organizedCards));
 			$player->addCard($randomCard1);
 
-			$randomCard2 = array_pop($this->organizedCards);
+			$randomCard2 = explode('-', array_pop($this->organizedCards));
 			$player->addCard($randomCard2);
 		}
 
-		//todo: explode the organizedArray
+
+		// exit();
+
+
 		//todo: add the total cards each player
 		//todo: if host is equal sum of 9, the game is over
 	}
@@ -79,18 +80,14 @@ class Engine
 
 class Player
 {
-	public $name;
+	protected $name;
 	protected $cards;
+	protected $total;
 	protected $bool = false;
 
 	public function __construct($name)
 	{
 		$this->name = $name;
-	}
-
-	public function getName()
-	{
-		return $this->name;
 	}
 
 	public function setHost($bool)
@@ -112,17 +109,14 @@ class Player
 		return $this->bool;
 	}
 
-	public function distributeCard()
+	public function getName()
 	{
-		//array merge
-
-		// adding of deck
-		// validations of card minimum of 1 maximum 2
+		return $this->name;
 	}
 
 	public function getDistributedCards()
 	{
-		$this->cards;
+		return $this->cards;
 	}
 }
 
